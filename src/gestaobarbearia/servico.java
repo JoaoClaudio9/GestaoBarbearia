@@ -1,11 +1,16 @@
-
 package gestaobarbearia;
 
 abstract class Servico {
-    
-    private String cliente;
-    private String descricao;
-    private double precoBase;
+
+   protected String cliente;
+   protected String descricao;
+   protected double precoBase;
+
+    public Servico(String cliente, String descricao, double precoBase) {
+        this.cliente = cliente;
+        this.descricao = descricao;
+        this.precoBase = precoBase;
+    }
 
     public String getCliente() {
         return cliente;
@@ -31,10 +36,13 @@ abstract class Servico {
         this.precoBase = precoBase;
     }
 
-    public void calcularPreco(){
-        
+    public abstract double CalcularPreco();
+
+    @Override
+    public String toString() {
+        return String.format("Cliente: %s | Descrição: %s | Preco Base: R$ %.2f", cliente, descricao, precoBase);
     }
-        
+
+    
+    
 }
-
-
