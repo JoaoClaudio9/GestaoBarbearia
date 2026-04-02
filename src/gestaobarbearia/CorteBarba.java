@@ -2,30 +2,30 @@ package gestaobarbearia;
 
 public class CorteBarba extends Servico {
 
-    private double ValorBarba;
+    private double valorBarba;
 
-    public CorteBarba(double ValorBarba, String cliente, String descricao, double precoBase) {
+    public CorteBarba(String cliente, String descricao, double precoBase, double valorBarba) {
         super(cliente, descricao, precoBase);
-        this.ValorBarba = ValorBarba;
+        this.valorBarba = valorBarba;
+    }
+
+    public double getValorBarba() {
+        return valorBarba;
+    }
+
+    public void setValorBarba(double valorBarba) {
+        this.valorBarba = valorBarba;
+    }
+
+    @Override
+    public double calcularPreco() {
+        return getPrecoBase() - valorBarba;
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format(" | Valor Barba: R$ %.2f | Total: R$ %.2f",
-                ValorBarba, CalcularPreco());
+        return "[Barba] " + super.toString() +
+               String.format(" | Desconto: R$ %.2f | Total: R$ %.2f",
+               valorBarba, calcularPreco());
     }
-
-    public double getValorBarba() {
-        return ValorBarba;
-    }
-
-    public void setValorBarba(double ValorBarba) {
-        this.ValorBarba = ValorBarba;
-    }
-
-    @Override
-    public double CalcularPreco() {
-        return precoBase + ValorBarba;
-    }
-
 }
